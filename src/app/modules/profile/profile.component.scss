@@ -1,0 +1,322 @@
+.global-scroll {
+  max-height: 90vh;
+  overflow: auto;
+}
+::ng-deep .profile-tab .p-tabview-nav-container {
+  margin-top: 2.5rem;
+  padding-left: 11.25vw;
+  padding-right: 12.8vw;
+}
+.credit {
+  padding-left: 11.25vw;
+  padding-right: 12.8vw;
+}
+
+::ng-deep .profile-tab .p-tabview-nav {
+  padding-bottom: 2rem;
+}
+
+::ng-deep .profile-tab .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  border: 1px #1076fc solid;
+  width: 15rem;
+  height: 3.5rem;
+  background-color: #eff0f8;
+  color: #1076fc;
+  font-weight: 400;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+}
+
+::ng-deep .profile-tab .p-tabview .p-tabview-panels {
+  padding: 0;
+}
+
+::ng-deep
+  .profile-tab
+  .p-tabview
+  .p-tabview-nav
+  li.p-highlight
+  .p-tabview-nav-link {
+  background-color: #1076fc;
+  color: #eff0f8;
+  text-align: center;
+}
+
+::ng-deep .profile-tab .p-tabview-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+.user-form {
+  width: 32vw;
+}
+input {
+  padding-left: 1.5rem !important;
+  height: 3.5rem;
+  font-size: 1.1rem;
+}
+.col-fixed {
+  width: 21vw;
+  padding: 0.37rem;
+}
+.title {
+  position: relative;
+  left: calc(100% - 21vw);
+  font-size: 1.25rem;
+}
+label,
+.title {
+  color: rgba(13, 23, 81, 0.32);
+  font-family: Readex Pro;
+  font-weight: 400;
+}
+label {
+  font-size: 1.1rem;
+}
+
+::ng-deep .profile-tab .btn-info .p-button-label {
+  font-family: Readex Pro;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.text-20 {
+  font-size: 20px;
+}
+.text-18 {
+  font-size: 18px;
+}
+
+.screens-info {
+  height: 10.5rem;
+  width: calc(100% - 7.1rem);
+  margin-left: 3rem;
+  padding: 2rem 5rem 2rem 3rem;
+  background-color: #eff0f8;
+  background: #eff0f8;
+  border-radius: 8px;
+  overflow: hidden;
+  align-items: center;
+}
+.screens-info p {
+  color: #1b2bb1;
+  font-size: 32px;
+  font-weight: 400;
+}
+
+.screens-info p span {
+  color: rgba(13, 23, 81, 0.32);
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.screens-info .label {
+  color: #0d1751;
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 2rem;
+}
+
+.contact-us {
+  display: flex;
+  width: 20rem;
+  height: 3.5rem;
+  background: #1076fc;
+  border-radius: 8px;
+  color: #eff0f8;
+  font-size: 18px;
+  font-weight: 400;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+}
+
+::ng-deep .contracts .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  color: rgba(10, 17, 61, 0.48);
+  font-size: 20px;
+  font-weight: 400;
+  border: none;
+  background: none;
+  width: auto;
+  height: auto;
+  padding: 0;
+}
+::ng-deep
+  .contracts
+  .p-tabview
+  .p-tabview-nav
+  li.p-highlight
+  .p-tabview-nav-link {
+  color: #1076fc;
+  background: none;
+}
+::ng-deep .contracts .p-tabview-nav {
+  justify-content: start;
+  padding-bottom: 1.5rem;
+  gap: 3rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
+  padding-left: 0;
+}
+
+::ng-deep .contracts .p-tabview-nav-container {
+  padding-left: 0;
+  padding-right: 0;
+  margin-right: 4.1rem;
+}
+
+.options {
+  gap: 5.3rem;
+  width: 89.5rem;
+  padding-left: 2.5rem;
+}
+
+.terms {
+  margin-bottom: 3.5rem;
+  padding: 2rem 4.1rem 2rem 1.75rem;
+  width: 44rem;
+  height: 25rem;
+  background: #eff0f8;
+  box-shadow: 0px 4px 8px rgba(13, 23, 81, 0.16);
+  border-radius: 8px;
+  gap: 1.25rem;
+  overflow: auto;
+}
+.terms img {
+  width: 2rem;
+  height: 2rem;
+}
+.terms span {
+  color: #0a113d;
+  font-size: 20px;
+  font-weight: 400;
+}
+.terms p {
+  margin-top: 1.5rem;
+  color: rgba(10, 17, 61, 0.48);
+  font-size: 18px;
+  font-weight: 300;
+}
+.functions {
+  width: 40rem;
+  margin-bottom: 1.5rem;
+}
+.functions p {
+  color: #0a113d;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.functions .left {
+  padding-left: 0;
+  margin-top: 1.5rem;
+}
+.functions .left li {
+  color: #0a113d;
+  font-size: 18px;
+  font-weight: 300;
+  list-style: none;
+  margin-bottom: 1rem;
+}
+.functions .left img {
+  margin-right: 1.5rem;
+}
+
+.functions .right li {
+  color: #1076fc;
+  font-size: 18px;
+  font-weight: 400;
+  list-style: none;
+  margin-bottom: 1rem;
+  margin-top: 1.5rem;
+  text-align: end;
+}
+
+.upgrade-btn {
+  margin-top: 3rem;
+  width: 17.5rem;
+  height: 3.5rem;
+  color: #1076fc;
+  font-size: 18px;
+  font-weight: 400;
+  background: #eff0f8;
+  border-radius: 8px;
+  border: 1px #1076fc solid;
+  display: flex;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+}
+
+::ng-deep .contracts .p-tabview .p-tabview-panels {
+  margin: 2.5rem 4.1rem 2.1rem 3rem;
+}
+
+::ng-deep .contracts-table .p-datatable > .p-datatable-wrapper {
+  border-radius: 8px;
+}
+
+::ng-deep .contracts-table .p-datatable .p-datatable-thead > tr > th {
+  color: rgb(17, 35, 97, 0.4);
+  font-size: 24px;
+  font-weight: 400;
+  background: #eff0f8;
+  text-align: center;
+  border-bottom: 1px rgb(17, 35, 97, 0.16) solid;
+}
+
+::ng-deep .contracts-table .p-datatable .p-datatable-tbody > tr > td {
+  background: #eff0f8;
+  text-align: center;
+  border-bottom: 1px rgb(17, 35, 97, 0.16) solid;
+  color: #112361;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.contract_id {
+  font-weight: 500!important;
+}
+
+.contract_discount span, .video_length span,.max_budjet_ttc span{
+  color: rgba(17, 35, 97, 0.48);
+}
+
+.contract_action a{
+  background: #EFF0F8; 
+  border-radius: 8px;
+  border: 1px #1076FC solid;
+  display: flex;
+height: 3.5rem;
+width: 3.5rem;
+color: #1076FC;
+font-size: 18px;
+font-weight: 400;
+text-decoration: none;
+align-items: center;
+justify-content: center;
+}
+
+::ng-deep .status .p-tag{
+display: flex;
+gap: 0.5rem;
+align-items: center;
+justify-content: center;
+padding: 0.25rem 0.5rem;
+font-size: 16px;
+font-weight: 300;
+border-radius: 14px;
+}
+::ng-deep .status.active .p-tag{
+  background: rgba(22, 224, 189, 0.24);
+  color: #16E0BD;
+}
+
+::ng-deep .status.expired .p-tag{
+  background: rgba(16, 118, 252, 0.24);
+  color: #1076FC;
+}

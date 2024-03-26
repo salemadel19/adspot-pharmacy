@@ -1,0 +1,63 @@
+<div class="container m-0 p-0 grid">
+  <p-toast
+    class="login-toast toast w-auto"
+    position="top-right"
+    [life]="2000"
+  ></p-toast>
+  <div class="left-side col-fixed m-0 p-0">
+    <img src="assets/img/login.svg" class="h-screen m-0" />
+  </div>
+  <div
+    class="right-side m-0 p-0 col bg-white flex flex-column align-items-center"
+  >
+    <img src="assets/img/login-logo.svg" class="logo" />
+
+    <div class="login-box">
+      <form [formGroup]="loginForm">
+        <div class="login-title mb-3">Se connecter</div>
+        <div class="p-fluid grid">
+          <div class="field col-12 mb-4">
+            <div class="flex flex-column gap-2 login-input">
+              <label htmlFor="username">Email</label>
+              <input
+                pInputText
+                id="username"
+                aria-describedby="username-help"
+                formControlName="username"
+              />
+            </div>
+          </div>
+          <div class="field col-12">
+            <div class="flex flex-column gap-2 login-input">
+              <label htmlFor="inputtext2" class="h4">Password</label>
+              <p-password
+                [toggleMask]="true"
+                id="inputtext2"
+                formControlName="password"
+                [feedback]="false"
+              ></p-password>
+              <div class="flex gap-2 justify-content-end">
+                <span *ngIf="isResetLoading$ | async" style="color: #1076fc">
+                  <i class="pi pi-spin pi-spinner"></i>
+                </span>
+                <small
+                  id="password-help"
+                  (click)="openPasswordDialog()"
+                  [ngClass]="{ disabled: (isResetLoading$ | async) }"
+                  >Mot de passe oublié ?</small
+                >
+              </div>
+            </div>
+          </div>
+          <p-button
+            class="col-12 login-btn"
+            label="Login"
+            [loading]="(isLoading$ | async) ?? false"
+            (click)="login()"
+          ></p-button>
+        </div>
+      </form>
+    </div>
+    <div class="footer">©wiser Global Communication, All Right Reserved.</div>
+  </div>
+</div>

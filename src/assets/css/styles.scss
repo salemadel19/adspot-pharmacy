@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~primeng/resources/themes/lara-light-blue/theme.css";
+@import "~primeng/resources/primeng.min.css";
+@import 'primeflex/primeflex.scss';
+@import "primeicons/primeicons.css";
+@import 'node_modules/angular-calendar/css/angular-calendar.css';
+
+
+* {
+    box-sizing: border-box;
+    font-family: 'Readex Pro', sans-serif;
+    margin: 0;
+    // padding: 0;
+  }
+
+  #scroll {
+    overflow: auto;
+    padding-bottom: 1rem;
+  }
+  
+  #scroll::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
+    background-color: transparent;
+    border-radius: 8px;
+  }
+  
+  #scroll::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: transparent;
+  }
+  
+  #scroll::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background: #1b2bb129;
+  }

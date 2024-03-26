@@ -1,0 +1,87 @@
+<div
+  class="flex gap-5 flex-column lg:pl-5 lg:pr-4 pl-3 py-5 py-3 h-full scroll"
+  id="scroll"
+  *ngIf="notifications$ | async as notifications"
+>
+  <div
+    class="playlist flex gap-5 budget-item flex-column lg:w-auto lg:max-w-26rem max-w-20rem"
+    *ngIf="notifications[0]"
+  >
+    <div class="flex justify-content-between w-full">
+      <div
+        class="border-round-3xl px-2 py-2 flex align-items-center justify-content-center newBackground mt-0 w-auto max-w-5rem gap-6"
+      >
+        <label class="text-sm font-light new-color white-space-nowrap"
+          >Nouveau
+        </label>
+      </div>
+      <i
+        class="pi pi-times cursor-pointer font-bold flex align-items-center"
+        style="color: #0a113d; font-size: 1rem"
+        (click)="onCloseNotifcation(notifications[0].notification_id)"
+        *ngIf="!(isDashboardLoading$ | async)"
+      ></i>
+      <span *ngIf="isDashboardLoading$ | async">
+        <i class="pi pi-spin pi-spinner" style="font-size: 1.4rem"></i>
+      </span>
+    </div>
+
+    <div class="approved-playlist">
+      <label class="text-4xl font-normal base-color"
+        >New widgets focused on
+      </label>
+    </div>
+    <label class="text-base font-normal text-color"
+      >{{notifications[0].notification_content}}
+    </label>
+    <div class="btn-shedule">
+      <p-button
+        label="Check Schedule"
+        class="md:text-base text:xs schedule-btn-color flex gap-2 w-full white-space-nowrap"
+      >
+      </p-button>
+    </div>
+  </div>
+  <div
+    class="widget flex gap-5 budget-item flex-column lg:w-auto lg:max-w-26rem max-w-20rem"
+    *ngIf="notifications[1]"
+  >
+    <div class="flex justify-content-between w-full">
+      <div
+        class="border-round-3xl px-2 py-2 flex align-items-center justify-content-center budgetBackground mt-0 w-auto max-w-5rem gap-6"
+      >
+        <label class="text-sm font-light budget-color white-space-nowrap"
+          >Nouveau
+        </label>
+      </div>
+      <i
+        class="pi pi-times cursor-pointer font-bold flex align-items-center"
+        style="color: #eff0f8; font-size: 1rem"
+        (click)="onCloseNotifcation(notifications[1].notification_id)"
+        *ngIf="!(isDashboardLoading$ | async)"
+      ></i>
+      <span *ngIf="isDashboardLoading$ | async">
+        <i
+          class="pi pi-spin pi-spinner"
+          style="font-size: 1.4rem; color: #eff0f8"
+        ></i>
+      </span>
+    </div>
+    <div class="approved-playlist">
+      <label class="text-4xl font-normal text-white"
+        >New widgets focused on helping
+      </label>
+    </div>
+    <label class="text-base font-normal text-white"
+      >{{notifications[1].notification_content}}
+    </label>
+    <div class="btn-widget">
+      <p-button
+        label="Check Schedule"
+        class="md:text-base text:xs widget-btn-color flex gap-2 w-full white-space-nowrap"
+        icon="pi pi-plus"
+      >
+      </p-button>
+    </div>
+  </div>
+</div>

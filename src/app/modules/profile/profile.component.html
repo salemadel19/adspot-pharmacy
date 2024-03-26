@@ -1,0 +1,307 @@
+<div class=" global-scroll">
+    <p-toast
+    class="toast w-auto"
+    position="top-right"
+    [life]="2000"
+  ></p-toast>
+
+    <p-tabView class="profile-tab ">
+        <p-tabPanel header="Info Personnelles" class="info">
+
+            <ng-template pTemplate="content">
+                <div class="flex justify-content-center ">
+                    <form [formGroup]="clientForm">
+                        <div class="grid align-items-center">
+                            <div class="col-12  title"
+                                [style]="{marginBottom:'2vh',marginTop:'2vh',paddingTop:'2rem',paddingBottom:'2rem'}">
+                                <label>Info utilisateur</label>
+                            </div>
+                        </div>
+                        <div>
+                        </div>
+                        <div class="grid align-items-center">
+                            <div class="col">
+                                <label for="clientName" class="col">Entreprise</label>
+                            </div>
+                            <div class="col-fixed">
+                                <input id="clientName" formControlName="client_name" type="text"
+                                    class=" p-2 border-1  border-round outline-none  border-primary w-full">
+                            </div>
+                        </div>
+                        <div class="grid align-items-center">
+                            <div class="col">
+                                <label for="clientPhone" class="col">Tel</label>
+                            </div>
+                            <div class="col-fixed">
+                                <input id="clientPhone" formControlName="client_phone" type="text"
+                                    class=" p-2 border-1  border-round  outline-none border-primary w-full">
+                            </div>
+                        </div>
+                        <div class="grid align-items-center">
+                            <div class="col">
+                                <label for="clientEmail" class="col">Email</label>
+                            </div>
+                            <div class="col-fixed">
+                                <input id="clientEmail" formControlName="client_email" type="text"
+                                    class=" p-2 border-1  border-round  outline-none border-primary w-full">
+                            </div>
+                        </div>
+                        <div class="grid align-items-center">
+                            <div class="col-12  title"
+                                [style]="{marginBottom:'2rem',marginTop:'2.5rem',paddingTop:'0',paddingBottom:'0'}">
+                                <label for="col"> Changer mot de passe</label>
+                            </div>
+                        </div>
+                        <div class="grid align-items-center">
+                            <div class="col">
+                                <label for="old_pwd" class="col">Ancien mot de passe</label>
+                            </div>
+                            <div class="col-fixed">
+                                <input id="old_pwd" formControlName="old_pwd"  type="text"
+                                    class=" p-2 border-1  border-round  outline-none border-primary w-full">
+                            </div>
+                        </div>
+                        <div class="grid align-items-center">
+                            <div class="col">
+                                <label for="new_pwd" class="col">Nouveau mot de passe</label>
+                            </div>
+                            <div class="col-fixed">
+                                <input id="new_pwd" formControlName="new_pwd" type="text"
+                                    class=" p-2 border-1  border-round  outline-none border-primary w-full">
+                            </div>
+                        </div>
+                        <div class="grid align-items-center">
+                            <div class="col">
+                                <label for="new_pwd2" class="col">Confirmer mot de passe</label>
+                            </div>
+                            <div class="col-fixed">
+                                <input id="new_pwd2" formControlName="new_pwd2" type="text"
+                                    class=" p-2 border-1  border-round  outline-none border-primary w-full">
+                            </div>
+                        </div>
+                        <div class="grid align-items-center">
+                            <div class="col-12  title"
+                                [style]="{marginBottom:'2rem',marginTop:'2.5rem',paddingTop:'0',paddingBottom:'0'}">
+                                <label for="col">Langue</label>
+                            </div>
+                        </div>
+                        <div class="grid align-items-center">
+                            <div class="col">
+                                <label for="firstname" class="col">Choisir la langue</label>
+                            </div>
+                            <div class="col-fixed">
+                                <input id="firstname" type="text"
+                                    class=" p-2 border-1  border-round  outline-none border-primary w-full"
+                                    value="Français" [disabled]="true">
+                            </div>
+                        </div>
+                        <div class="grid align-items-center">
+                            <div class="col-12  title"
+                                [style]="{marginBottom:'5rem',marginTop:'2.5rem',paddingTop:'0',paddingBottom:'0'}">
+                                <p-button label="Sauvegarder" (click)="updateProfile()"
+                                    class="md:text-base text:xs btn-info"
+                                    [style]="{backgroundColor: '#1076FC',color:'#EFF0F8',width:'9.9vw',marginRight:'0.5vw',height:'3.5rem'}"></p-button>
+                                <p-button label="Annuler" class="md:text-base text:xs btn-info"
+                                    [style]="{backgroundColor: '#EFF0F8',color:'#1076FC',width:'9.9vw',height:'3.5rem'}"></p-button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+
+            </ng-template>
+        </p-tabPanel>
+        <p-tabPanel header="Tarifs & Factures" class="features">
+            <ng-template pTemplate="content">
+                    <div class="mt-5 flex justify-content-between screens-info">
+                        <div>
+                            <p class="label">Budget maximal</p>
+                            <p class="dark-text text-20" [style]="{marginTop:'1rem'}">{{ maxBudget$ | async | number : '1.2-2' : 'fr'  }}
+                                <span>DZD</span>
+                            </p>
+                        </div>
+                        <div>
+                            <p class="label">Nombre des écrans alloués</p>
+                            <p class="dark-text text-20" [style]="{marginTop:'1rem'}">{{screensCount$ | async}}
+                                <span>écrans</span>
+                            </p>
+                        </div>
+                        <div>
+                            <p class="label">Total des Ecrans Disponibles</p>
+                            <p class="dark-text text-20" [style]="{marginTop:'1rem'}">{{totalScreens$ | async}}
+                                <span>écrans</span>
+                            </p>
+                        </div>
+
+
+                        <div class="flex flex-column">
+                            <p class="label pt-3">Besoin de plus d'écrans?</p>
+                            <a href="mailto:contact@adspot.pub" class="contact-us">Contactez-nous</a>
+
+                        </div>
+                    </div>
+                <p-tabView class="contracts">
+
+                    <p-tabPanel header="Détails Facturation">
+                        <div class="options flex justify-content-between">
+
+                            <div class="functions">
+                                <p>Fonctionnalités</p>
+                                <div class=" flex justify-content-between">
+                                    <ul class="left">
+                                        <li><img src="/assets/img/functionnalities-checked-bullet.svg" alt="" />Création
+                                            playlist / diffusion</li>
+                                        <li><img src="/assets/img/functionnalities-checked-bullet.svg"
+                                                alt="" />Monitoring</li>
+                                        <li><img src="/assets/img/functionnalities-bullet.svg" alt="" />QR Code
+                                        </li>
+                                        <li [style]="{paddingLeft:'3rem'}">Total coût par mois</li>
+                                        <li [style]="{paddingLeft:'3rem'}">Date du prochain chargement</li>
+                                        <li [style]="{paddingLeft:'3rem'}"><a href="mailto:contact@adspot.pub"
+                                                class="upgrade-btn">Upgrade Tarif</a></li>
+                                    </ul>
+
+                                    <ul class="right">
+
+                                        <li>Gratuit</li>
+                                        <li>Gratuit</li>
+                                        <li>100 000,00 DZD</li>
+                                        <li>100 000,00 DZD</li>
+                                        <li>22 / 10 / 2023</li>
+                                    </ul>
+
+
+                                </div>
+
+                            </div>
+                            <div class="terms flex">
+                                <img src="/assets/img/terms-icon.svg" alt="" />
+                                <div>
+                                    <span>Termes et Conditions</span>
+                                    <p>Conditions d'Utilisation pour la Publicité sur Notre Plateforme <br>
+
+                                        #### Interdictions <br>
+                                        
+                                        Les publicités diffusées sur notre plateforme ne doivent en aucun cas : <br>
+                                        
+                                        1. *Créer la Confusion* : Les publicités ne doivent pas créer de confusion avec un autre service, produit, ou avec le nom commercial d'un concurrent. <br>
+                                        2. *Discréditer* : Il est interdit de discréditer les produits ou l'image d'une autre entreprise. <br>
+                                        3. *Porter Atteinte au Crédit de l'État* : Les publicités ne doivent pas nuire à l'image ou au crédit de l'État. <br>
+                                        4. *Choquer les Convictions* : Les publicités ne doivent pas choquer les convictions politiques ou religieuses. <br>
+                                        5. *Être Trompeuse* : Le message publicitaire ne doit pas induire en erreur par son caractère ambigu, par exagération ou par omission. <br>
+                                        
+                                        #### Exigences <br>
+                                        
+                                        Par ailleurs, les publicités doivent respecter les critères suivants : <br>
+                                        
+                                        1. *Exempt de Discrimination* : Les publicités doivent être exemptes de toute forme de discrimination raciale ou sexuelle. <br>
+                                        2. *Sans Violence* : Elles ne doivent pas contenir de scènes de violence ou d'éléments susceptibles de provoquer la peur. <br>
+                                        3. *Encouragement à la Prudence* : Les publicités ne doivent pas encourager les abus, imprudences ou négligences. <br>
+                                        4. *Respect des Consommateurs* : Elles doivent respecter les intérêts des consommateurs. <br>
+                                        5. *Véracité et Décence* : Les publicités doivent exiger de la véracité, de la décence et du respect pour la personne humaine. <br>
+                                        
+                                        #### Engagement de Conformité <br>
+                                        
+                                        En soumettant une publicité sur notre plateforme, les annonceurs s'engagent à respecter ces conditions. Nous nous réservons le droit de refuser ou de retirer toute publicité qui ne serait pas en conformité avec ces exigences.</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </p-tabPanel>
+                    <p-tabPanel header="Contracts">
+
+                        <p-table [value]="contracts" class="contracts-table">
+                            <ng-template pTemplate="header" let-columns>
+                                <tr>
+                                    <th>ID Contract </th>
+                                    <th>Pack</th>
+                                    <th>N°écrans</th>
+                                    <th>Budget Maximal</th>
+                                    <th>Remise</th>
+                                    <th>Durée Vidéo</th>
+                                    <th>Date Début</th>
+                                    <th>Date Fin</th>
+                                    <th>Statut</th>
+                                    <th></th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-contract let-columns="cols">
+                                <tr>
+                                    <td class="contract_id">{{contract.contract_id}}</td>
+                                    <td class="contract_pack" *ngIf="contract.contract_pack !='advenced'">{{contract.contract_pack}}</td>
+                                    <td class="contract_pack" *ngIf="contract.contract_pack =='advenced'">advanced</td>
+                                    <td class="contract_tvs_count">{{contract.tvs_count}}</td>
+                                    <td class="max_budjet_ttc">{{contract.max_budjet_ttc | number : '1.2-2' : 'fr' }}<span>DZD</span></td>
+                                    <td class="contract_discount">{{contract.contract_discount }}<span>%</span></td>
+                                    <td class="video_length">{{contract.video_length}}<span>s</span></td>
+                                    <td class="contract_start_date">{{contract.contract_start_date}}</td>
+                                    <td class="contract_end_date">{{contract.contract_end_date}}</td>
+                                    <td class="contract_status">
+                                            <p-tag *ngIf="contract.isExpired" class="status expired" >
+                                                <img src="/assets/img/pending-icon.svg" alt="" />
+                                                <span>
+                                                    Expiré
+                                                </span>
+                                            </p-tag>
+                                            <p-tag *ngIf="!contract.isExpired "  class="status active">
+                                                <img src="/assets/img/accepted-icon.svg" alt="" />
+                                                <span>
+                                                    Actif
+                                                </span>
+                                            </p-tag>
+                                    </td>
+                                    <td class="contract_action"><a target="_blank" href="{{contract.contract_link}}"><img
+                                                src="/assets/img/export-pdf.svg" alt="" /></a></td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </p-tabPanel>
+                    <p-tabPanel header="Factures">
+                        <p-table [value]="invoices" class="contracts-table">
+                            <ng-template pTemplate="header" >
+                                <tr>
+                                    <th>N° Facture </th>
+                                    <th>Total HT</th>
+                                    <th>Total TTC</th>
+                                    <th>Date Facture</th>
+                                    <th>Délai</th>
+                                    <th>Statut</th>
+                                    <th></th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-invoice >
+                                <tr>
+                                    <td class="contract_id">{{invoice.invoice_number}}</td>
+                                    <td class="max_budjet_ttc">{{invoice.total_ht | number : '1.2-2' : 'fr' }}<span>DZD</span></td>
+                                    <td class="max_budjet_ttc">{{invoice.total_ttc | number : '1.2-2' : 'fr' }}<span>DZD</span></td>
+                                    <td class="contract_discount">{{invoice.invoice_date }}</td>
+                                    <td class="video_length">{{invoice.invoice_dead_line}}</td>
+                                    <td class="contract_status">
+                                            <p-tag *ngIf="invoice.invoice_paid" class="status active" >
+                                                <img src="/assets/img/accepted-icon.svg" alt="" />
+                                                <span>
+                                                    Payée
+                                                </span>
+                                            </p-tag>
+                                            <p-tag *ngIf="!invoice.invoice_paid "  class="status expired">
+                                                <img src="/assets/img/pending-icon.svg" alt="" />
+                                                <span>
+                                                    Impayée
+                                                </span>
+                                            </p-tag>
+                                    </td>
+                                    <td class="contract_action"><a target="_blank" href="{{invoice.invoice_link}}"><img
+                                                src="/assets/img/fullscreenblue.svg" alt="" /></a></td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </p-tabPanel>
+                </p-tabView>
+
+
+            </ng-template>
+        </p-tabPanel>
+    </p-tabView>
+
+</div>

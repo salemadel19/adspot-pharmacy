@@ -1,0 +1,45 @@
+<form
+  class="flex flex-column w-full pb-5 h-27rem pl-7 pb-5 gap-4 justify-content-start align-items-start"
+  [formGroup]="folderForm"
+>
+  <label class="font-color-title md:text-xl text-sm font-normal"
+    >Nom Du Dossier</label
+  >
+  <div class="creation-input w-10 flex flex-column gap-2">
+    <input
+      type="text"
+      pInputText
+      class="p-inputtext md:text-lg text:xs font-light w-full"
+      formControlName="folder_title"
+    />
+  </div>
+  <label class="font-color-title md:text-xl text-sm font-normal">
+    Description Du Dossier</label
+  >
+  <div class="creation-input w-10 flex flex-column gap-2">
+    <textarea
+      rows="5"
+      cols="30"
+      pInputTextarea
+      [autoResize]="true"
+      formControlName="folder_description"
+    ></textarea>
+  </div>
+
+  <div class="flex gap-2 w-full">
+    <div class="col-5 pl-0" (click)="emitFolderDetails()">
+      <p-button
+        type="button"
+        label="Créer"
+        class="md:text-base text:xs btn create-btn flex gap-2"
+        [disabled]="!FolderTitle || !FolderDescritption"
+      ></p-button>
+    </div>
+    <div class="col-5 pl-0" (click)="closeCFoldarModal()">
+      <p-button
+        label="Annuler"
+        class="md:text-base text:xs btn cancel-btn flex gap-2"
+      ></p-button>
+    </div>
+  </div>
+</form>

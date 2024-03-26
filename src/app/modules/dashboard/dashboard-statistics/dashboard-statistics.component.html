@@ -1,0 +1,456 @@
+<div class="flex-container h-full stats">
+  <p-toast
+    class="toast w-auto"
+    position="bottom-center"
+    [life]="2000"
+  ></p-toast>
+  <div
+    class="flex justify-content-between w-full px-5 pb-5 stat-dropdown align-items-center"
+  >
+    <div class="flex gap-2" *ngIf="dashboardData.passage">
+      <label class="font-color md:text-3xl text-sm font-normal"
+        >Bienvenue,
+      </label>
+      <label class="user-color md:text-3xl text-sm font-normal"
+        >{{ client$ | async }}
+      </label>
+    </div>
+    <div class="flex align-self-center">
+      <p-dropdown
+        [hidden]="!dashboardData.passage"
+        #dropdown
+        [options]="statisticsPerDay"
+        [editable]="true"
+        placeholder="Aujourd'hui"
+        optionLabel="name"
+        [autoDisplayFirst]="false"
+        (onChange)="onDashboardSelectionDate($event)"
+        class="dashboard-dropdown col-5 pl-0 w-full"[dropdownIcon]="
+        (isDashboardLoading$ | async)
+          ? 'pi pi-spin pi-spinner'
+          : 'pi pi-chevron-down'
+      "
+      >
+        <ng-template let-item pTemplate="item">
+          <div
+            class="custom-dropdown-item w-full flex h-2rem"   
+          >
+            <span
+              class="font-color font-light md:text-base text-sm opacity-80"
+              >{{ item.name }}</span
+            >
+          </div>
+        </ng-template>
+      </p-dropdown>
+    </div>
+  </div>
+  <div class="scroll-line-chart" id="scroll" [hidden]="!dashboardData.passage">
+    <div class="col flex justify-content-evenly ml-5 mr-3 mb-3 h-9rem bg">
+      <div class="flex flex-column flex-1 h-full justify-content-center">
+        <div
+          class="flex justify-content-evenly align-items-start xl:px-2 px-2 xl:gap-2 gap-2"
+        >
+          <img src="/assets/img/total-passage.svg" />
+          <div class="flex flex-column row-gap-2">
+            <label class="font-color md:text-base text-sm font-normal"
+              >Total passages
+            </label>
+            <label class="font-color md:text-3xl text-sm font-normal"
+              >{{ dashboardData.passage | number : '' : 'fr' }}
+            </label>
+          </div>
+        </div>
+      </div>
+      <p-divider
+        layout="vertical"
+        class="h-5rem flex align-self-center"
+        type="solid"
+      ></p-divider>
+      <div class="flex flex-column flex-1 h-full justify-content-center">
+        <div
+          class="flex justify-content-evenly align-items-start xl:px-2 px-2 xl:gap-2 gap-2"
+        >
+          <img src="/assets/img/accepted-diffusion.svg" />
+          <div class="flex flex-column row-gap-2">
+            <label class="font-color md:text-base text-sm font-normal"
+              >Diffusions acceptées
+            </label>
+            <label class="font-color md:text-3xl text-sm font-normal"
+              >{{ (totalStatus$ | async)?.active | number : '' : 'fr' }}
+            </label>
+          </div>
+        </div>
+      </div>
+      <p-divider
+        layout="vertical"
+        class="h-5rem flex align-self-center"
+        type="solid"
+      ></p-divider>
+
+      <div class="flex flex-column flex-1 h-full justify-content-center">
+        <div
+          class="flex justify-content-evenly align-items-start xl:px-2 px-2 xl:gap-2 gap-2"
+        >
+          <img src="/assets/img/expired-diffusion.svg" />
+          <div class="flex flex-column row-gap-2">
+            <label class="font-color md:text-base text-sm font-normal"
+              >Diffusions expirées
+            </label>
+            <label class="font-color md:text-3xl text-sm font-normal"
+              >{{ (totalStatus$ | async)?.expired | number : '' : 'fr' }}
+            </label>
+          </div>
+        </div>
+      </div>
+      <p-divider
+        layout="vertical"
+        class="h-5rem flex align-self-center"
+        type="solid"
+      ></p-divider>
+
+      <div class="flex flex-column flex-1 h-full justify-content-center">
+        <div
+          class="flex justify-content-evenly align-items-start xl:px-2 px-2 xl:gap-2 gap-2"
+        >
+          <img src="/assets/img/pending-diffusion.svg" />
+          <div class="flex flex-column row-gap-2">
+            <label class="font-color md:text-base text-sm font-normal"
+              >Diffusions en attente
+            </label>
+            <label class="font-color md:text-3xl text-sm font-normal"
+              >{{ (totalStatus$ | async)?.pending | number : '' : 'fr' }}
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ml-5 mr-3 flex gap-3 mt-4 mb-3">
+      <div class="col-4 h-24rem bg budget">
+        <div
+          class="slot-height flex flex-column justify-content-center xl:pl-5 xl:gap-3 pl-3 gap-1"
+        >
+          <div class="border-round-3xl total-screens-bg px-1 py-2 flex gap-2">
+            <img src="/assets/img/total-ecran.svg" alt="" class="pl-2" />
+            <label class="user-color md:text-base text-sm font-light pr-2"
+              >Total écrans
+            </label>
+          </div>
+          <div class="flex gap-3">
+            <img src="/assets/img/screen-icon.svg" alt="" />
+            <label class="font-color xl:text-5xl text-2xl font-medium"
+              >{{ dashboardData.tvs.length | number : '' : 'fr' }}
+            </label>
+          </div>
+          <div class="flex gap-3 flex-wrap">
+            <div
+              class="cursor-pointer icons-color md:h-auto md:w-auto md:max-w-5rem content-card border-round-md flex column-gap-2 md:p-3 p-2 align-items-center status-size"
+              data-tooltip="on"
+            >
+              <label
+                class="font-color md:text-base text-sm font-normal cursor-pointer"
+              >
+                {{ calculateOnlineTvs() | number : '' : 'fr' }}</label
+              >
+              <img
+                src="/assets/img/accepted.svg"
+                alt=""
+                class="cursor-pointer"
+              />
+            </div>
+            <div
+              class="cursor-pointer icons-color md:h-auto md:w-auto md:max-w-5rem content-card border-round-md flex column-gap-2 md:p-3 p-2 align-items-center status-size"
+              data-tooltip="off"
+            >
+              <label
+                class="font-color md:text-base text-sm font-normal cursor-pointer"
+              >
+                {{ calculateOfflineTvs() | number : '' : 'fr' }}</label
+              >
+              <img
+                src="/assets/img/refused.svg"
+                alt=""
+                class="cursor-pointer"
+              />
+            </div>
+            <div
+              class="cursor-pointer icons-color md:h-auto md:w-auto md:max-w-5rem content-card border-round-md flex column-gap-2 md:p-3 p-2 align-items-center status-size"
+              data-tooltip="all"
+            >
+              <label
+                class="font-color md:text-base text-sm font-normal cursor-pointer"
+              >
+                {{
+                  calculateOfflineTvs() + calculateOnlineTvs()
+                    | number : '' : 'fr'
+                }}</label
+              >
+              <img src="/assets/img/tvs.svg" alt="" class="cursor-pointer" />
+            </div>
+          </div>
+        </div>
+
+        <p-divider
+          layout="horizontal"
+          class="flex align-self-center my-0 mx-auto w-10 py-5"
+          type="solid"
+        ></p-divider>
+
+        <div
+          class="slot-height flex flex-column justify-content-start xl:pl-5 xl:gap-3 pl-3 gap-1"
+        >
+          <div class="border-round-3xl budget-bg px-1 py-2 flex gap-2">
+            <img src="/assets/img/accepted-icon.svg" alt="" class="pl-2" />
+            <label class="success md:text-base text-sm font-light pr-2"
+              >Budget dépensé
+            </label>
+          </div>
+          <div class="flex gap-3">
+            <label
+              class="font-color xl:text-5xl text-2xl font-medium text-overflow-ellipsis overflow-hidden white-space-nowrap"
+              >{{ dashboardData.total_spent | number : '1.2-2' : 'fr' }}
+            </label>
+            <label
+              class="font-color lg:text-2xl text-base font-medium align-self-end"
+              >DA
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="col h-24rem bg flex flex-column gap-3 budget">
+        <div
+          class="items max-w-full h-9rem max-h-10rem border-round-lg flex column-gap-2 align-items-center cursor-pointer"
+          *ngFor="
+            let diffusion of dashboardData.diffussions.slice(0, 2);
+            index as i
+          "
+          (click)="navigateToDiffusion()"
+        >
+          <div
+            class="lg:w-12rem w-full lg:max-w-full max-w-14rem md:w-auto max-h-10rem h-auto cursor-pointer mr-0 flex justify-content-center align-items-center screens-img"
+          >
+            <img
+              src="{{ diffusion.landscape_thumb_link }}"
+              alt=""
+              class="w-full h-auto max-h-7rem border-round-lg"
+            />
+          </div>
+          <div class="flex flex-column col pr-3 pt-3">
+            <div
+              class="flex justify-content-between align-items-center gap-2 lg:pb-2"
+            >
+              <div>
+                <label
+                  class="font-color xl:text-xl text-base font-light white-space-nowrap"
+                  >{{ diffusion.video_product_name }}
+                </label>
+              </div>
+              <div
+                class="border-round-3xl px-2 py-2 flex column-gap-2 align-items-center justify-content-center successBackground mt-0 w-auto max-w-9rem"
+                [ngClass]="{
+                  successBackground: diffusion.diffusion_status === 'Acceptée',
+                  pandingBackground:
+                    diffusion.diffusion_status === 'En Attente',
+                  rejectedBackground: diffusion.diffusion_status === 'Refusée',
+                  expiredBackground: diffusion.diffusion_status === 'Expirée'
+                }"
+              >
+                <label
+                  class="md:text-base text-sm font-light success pl-2 white-space-nowrap"
+                  [ngClass]="{
+                    success: diffusion.diffusion_status === 'Acceptée',
+                    panding: diffusion.diffusion_status === 'En Attente',
+                    rejected: diffusion.diffusion_status === 'Refusée',
+                    expired: diffusion.diffusion_status === 'Expirée'
+                  }"
+                  >{{ diffusion.diffusion_status }}
+                </label>
+
+                <img
+                  [src]="
+                    diffusion.diffusion_status === 'Acceptée'
+                      ? '/assets/img/accepted-icon.svg'
+                      : diffusion.diffusion_status === 'Refusée'
+                      ? '/assets/img/rejected-icon.svg'
+                      : diffusion.diffusion_status === 'En Attente'
+                      ? '/assets/img/pending-icon.svg'
+                      : '/assets/img/expired-icon.svg'
+                  "
+                  class="text-right pr-2"
+                />
+              </div>
+            </div>
+            <div class="flex column-gap-2 pb-1">
+              <img src="/assets/img/screen-icon.svg" alt="" />
+              <div class="flex gap-2">
+                <label class="font-color xl:text-lg text-base font-light"
+                  >{{ diffusion.tvs_count | number : '' : 'fr' }}
+                </label>
+                <label class="font-color xl:text-lg text-base font-light"
+                  >Ecrans
+                </label>
+              </div>
+            </div>
+
+            <div
+              class="flex column-gap-2 justify-content-start align-items-center"
+            >
+              <div class="flex w-full">
+                <div
+                  class="flex flex-wrap column-gap-2 w-full max-w-4rem justify-content-start align-items-center"
+                  *ngFor="let slot of diffusion.space_time_slots"
+                >
+                <label
+                class="md:text-base text-sm font-light font-color"
+               
+                >{{ slot }}h
+              </label>
+                </div>
+                <div class="flex gap-2 w-full justify-content-end">
+                  <label
+                    class="md:text-base text-sm font-light font-color line-height-3 white-space-nowrap flex align-items-center justify-content-end"
+                  >
+                    {{ diffusion.diffusion_start_date | date }} /
+                  </label>
+                  <label
+                    class="md:text-base text-sm font-light font-color line-height-3 white-space-nowrap flex align-items-center justify-content-end"
+                  >
+                    {{ diffusion.diffusion_end_date | date }}
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ml-5 mr-3 flex gap-3 mt-4 mb-3">
+      <div class="col h-auto bg flex flex-column justify-content-around">
+        <div
+          class="flex justify-content-between h-auto pt-4 align-items-baseline w-100"
+        >
+          <div class="lg:col-6 flex flex-column gap-2 lg:pl-5 pl-2">
+            <label class="font-color md:text-base text-sm font-normal"
+              >Passage par jour
+            </label>
+            <label class="font-color-total md:text-4xl text-2xl font-normal"
+              >{{
+                totalHoveredPassageDate
+                  ? (totalHoveredPassageDate | number : '' : 'fr')
+                  : 0
+              }}
+            </label>
+          </div>
+          <div class="lg:col-6">
+            <p-button
+              label="Exporter PDF"
+              class="md:text-base text:xs w-full pdf-button font-normal flex justify-content-end pr-5"
+              (click)="exportToPDF('line')"
+            >
+            </p-button>
+          </div>
+        </div>
+        <div class="h-auto max-h-20rem flex">
+          <canvas #line class="canvas w-full h-full"></canvas>
+        </div>
+      </div>
+      <div class="col h-auto bg flex column-gap-2">
+        <div
+          class="flex flex-column w-full flex flex-column gap-2 pb-0 lg:pl-5 pl-2"
+        >
+          <div
+            class="flex justify-content-between w-full h-auto pt-4 align-items-baseline"
+          >
+            <div class="flex flex-column lg:col-6 flex flex-column gap-2">
+              <label class="font-color md:text-base text-sm font-normal"
+                >Passage par Créneaux
+              </label>
+              <label class="font-color md:text-4xl text-2xl font-normal"
+                >{{
+                  totalHoveredPassageRange
+                    ? (totalHoveredPassageRange | number : '' : 'fr')
+                    : 0
+                }}
+              </label>
+            </div>
+            <div class="lg:col-6">
+              <p-button
+                label="Exporter PDF"
+                class="md:text-base text:xs w-full pdf-button font-normal flex justify-content-end"
+                (click)="exportToPDF('doughnut')"
+              >
+              </p-button>
+            </div>
+          </div>
+          <div class="flex justify-content-center align-items-center h-full">
+            <div class="flex justify-content-around gap-1 col-5">
+              <div class="flex flex-column gap-5">
+                <div class="flex gap-2" *ngIf="rangeData[0].exist">
+                  <img src="{{ rangeData[0].imagePath }}" alt="" />
+                  <label
+                    class="font-color md:text-base text-sm font-normal pr-2"
+                    >{{ rangeData[0].range }}
+                  </label>
+                </div>
+                <div class="flex gap-2" *ngIf="rangeData[1].exist">
+                  <img src="{{ rangeData[1].imagePath }}" alt="" />
+                  <label
+                    class="font-color md:text-base text-sm font-normal pr-2"
+                    >{{ rangeData[1].range }}
+                  </label>
+                </div>
+                <div class="flex gap-2" *ngIf="rangeData[2].exist">
+                  <img src="{{ rangeData[2].imagePath }}" alt="" />
+                  <label
+                    class="font-color md:text-base text-sm font-normal pr-2"
+                    >{{ rangeData[2].range }}
+                  </label>
+                </div>
+              </div>
+              <div class="flex flex-column gap-5">
+                <div class="flex gap-2" *ngIf="rangeData[3].exist">
+                  <img src="{{ rangeData[3].imagePath }}" alt="" />
+                  <label
+                    class="font-color md:text-base text-sm font-normal pr-2"
+                    >{{ rangeData[3].range }}
+                  </label>
+                </div>
+                <div class="flex gap-2" *ngIf="rangeData[4].exist">
+                  <img src="{{ rangeData[4].imagePath }}" alt="" />
+                  <label
+                    class="font-color md:text-base text-sm font-normal pr-2"
+                    >{{ rangeData[4].range }}
+                  </label>
+                </div>
+                <div class="flex gap-2" *ngIf="rangeData[5].exist">
+                  <img src="{{ rangeData[5].imagePath }}" alt="" />
+                  <label
+                    class="font-color md:text-base text-sm font-normal pr-2"
+                    >{{ rangeData[5].range }}
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="col h-full ">
+              <canvas
+                #doughnut
+                class="canvas w-auto max-w-full h-full"
+              ></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="flex flex-column gap-2 justify-content-center align-items-center flex-1 h-19rem"
+    *ngIf="!dashboardData.passage"
+  >
+    <div class="mr-4">
+      <i class="pi pi-spin pi-spinner text-3xl"></i>
+    </div>
+    <label class="font-color md:text-2xl text-sm font-normal"
+      >Chargement...</label
+    >
+  </div>
+</div>

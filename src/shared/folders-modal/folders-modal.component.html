@@ -1,0 +1,50 @@
+<form
+  class="flex flex-column w-full pb-5 h-27rem pt-3 gap-3 justify-content-start align-items-start"
+>
+  <div
+    class="card-bg md:h-auto md:max-h-12rem border-round-lg md:p-4 p-2"
+    *ngFor="let folder of folders; index as i"
+    [ngClass]="folder.isSelected ? 'select' : 'unselect'"
+    (click)="onFolderSelection(i)"
+  >
+    <div class="flex justify-content-between align-items-center lg:pb-4 pb-2">
+      <div
+        class="flex md:column-gap-3 column-gap-2 icons-color align-items-center"
+      >
+        <i
+          class="pi pi-folder md:text-2xl text-base"
+          style="font-size: 1.5rem; color: #1076fc"
+        ></i>
+        <label
+          class="font-color md:text-xl text-sm font-normal white-space-nowrap"
+          >{{ folder.folder_title }}
+        </label>
+      </div>
+      <label class="font-color md:text-xl text-sm font-normal">
+        {{ folder.totalItems }}</label
+      >
+    </div>
+    <div class="md:pb-2 pb-1">
+      <label class="font-color md:text-lg text-sm font-light">{{
+        folder.folder_description
+      }}</label>
+    </div>
+  </div>
+  <div class="flex gap-2 w-full">
+    <div class="col-6 pl-0">
+      <p-button
+        type="button"
+        label="Créer"
+        class="md:text-base text:xs btn create-btn flex gap-2"
+        (click)="submitSelectedFolder()"
+        [disabled]="!isFolderSelected()"
+      ></p-button>
+    </div>
+    <div class="col-6 pl-0" (click)="closeCFoldarModal()">
+      <p-button
+        label="Annuler"
+        class="md:text-base text:xs btn cancel-btn flex gap-2"
+      ></p-button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,170 @@
+<div
+  class="flex lg:flex-column lg:justify-content-start justify-content-between screens-detail flex-row h-full lg:gap-0 gap-3"
+  id="scroll"
+>
+  <div class="flex flex-column">
+    <div
+      class="mt-4 mb-4 lg:ml-5 ml-3 lg:mr-5 mr-3 flex justify-content-between"
+    >
+      <label class="font-color md:text-2xl text-base font-normal"
+        >Détails
+      </label>
+      <span *ngIf="isScreenListLoading$ | async">
+        <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+      </span>
+    </div>
+
+    <div
+      class="border-round-3xl px-1 py-2 flex column-gap-2 align-items-center justify-content-center successBackground lg:ml-5 ml-3 mb-5 mt-0 w-auto max-w-5rem"
+      [ngClass]="{
+        successBackground: screenDetails.tv_status === 'on',
+        rejectedBackground: screenDetails.tv_status === 'off'
+      }"
+      *ngIf="!(isScreenListLoading$ | async) && screenDetails.contact_id"
+    >
+      <img
+      *ngIf="!(isScreenListLoading$ | async) && screenDetails.contact_id"
+        [src]="
+          screenDetails.tv_status === 'on'
+            ? '/assets/img/accepted-icon.svg'
+            : '/assets/img/rejected-icon.svg'
+        "
+        class="text-right pl-2"
+      />
+      <label
+        class="md:text-base text-sm font-light text-right success pr-2"
+        [ngClass]="{
+          success: screenDetails.tv_status === 'on',
+          rejected: screenDetails.tv_status === 'off'
+        }"
+        >{{ screenDetails.tv_status }}
+      </label>
+    </div>
+    <div
+      class="lg:ml-5 lg:mb-5 lg:mr-5 mt-0 m-3 mb-0 lg:w-auto w-full lg:w-full lg:max-w-full w-full max-w-14rem"
+    >
+      <img src="/assets/img/pharmacy.jpg" class="cursor-pointer w-full img" />
+    </div>
+  </div>
+
+  <div class="flex-container" [hidden]="(isScreenListLoading$ | async) || !(screenDetails.contact_id)">
+    <div
+      class="lg:mx-5 mx-3 lg:mt-0 mt-4 m-3 mb-4 flex justify-content-between"
+      *ngIf="screenDetails?.contact_id"
+    >
+      <div class="flex gap-1" >
+        <a
+          href="https://maps.google.com/?q={{
+            screenDetails.contact_location.y
+          }},{{ screenDetails.contact_location.x }}"
+          target="_blank"
+          rel="noopener noreferrer"
+          (click)="
+            preventClickIfNoLocation(screenDetails.location_existence, $event)
+          "
+        >
+          <i
+            class="pi pi-map-marker text-2xl cursor-pointer"
+            [ngClass]="{
+                    panding: screenDetails.location_existence,
+                    noLocation: !screenDetails.location_existence,
+                
+                  }"
+          ></i>
+        </a>
+        <label class="font-color md:text-xl text-base font-normal"
+          >{{ screenDetails.contact_lastname }}
+          {{ screenDetails.contact_firstname }}</label
+        >
+      </div>
+
+      <i
+        class="pi pi-folder-open"
+        data-tooltip="Ajouter au dossier"
+        style="font-size: 1.5rem; color: #1076fc"
+        (click)="openFoldersModal()"
+        *ngIf="folders?.length"
+      ></i>
+    </div>
+
+    <div class="lg:mx-5 mx-3 mt-0 mb-4" *ngIf="currentScreensDiffusion?.length">
+      <video #videoPlayer controls style="position: absolute; left: -9999px">
+        <source
+          [src]="currentScreensDiffusion[0].video_url"
+          type="video/mp4"
+        />
+      </video>
+      <p-button
+        label="Live"
+        class="md:text-lg text:xs font-normal shedule-btn flex gap-2 w-full"
+        [loading]="false"
+        icon="pi pi-file-edit"
+        [disabled]="
+          !currentScreensDiffusion || screenDetails.tv_status === 'off'
+        "
+        (click)="startVideoPlayback()"
+      >
+      </p-button>
+    </div>
+    <div class="lg:ml-5 lg:mr-5 m-3 mb-4">
+      <p-dropdown
+        #propDropdown
+        [options]="tvs"
+        placeholder="Détails"
+        [ngClass]="{ active: isTvsDetailsRotated,  }"
+        (click)="toggleRotation('tvs_details')"
+        optionLabel="code"
+        class="screens-dropdown info-dropdown"
+        [autoDisplayFirst]="false"
+        [overlayOptions]="getOverlayOptions()"
+      >
+        <ng-template let-item pTemplate="item">
+          <div class="custom-dropdown-item w-full h-2rem text-overflow-ellipsis overflow-hidden white-space-nowrap" >
+            <span class="font-color font-light md:text-base text-sm opacity-50"
+              >{{ item.name }}
+            </span>
+            <span class="font-color font-light md:text-base text-sm">{{
+              item.code
+            }}</span>
+          </div>
+        </ng-template>
+      </p-dropdown>
+    </div>
+    <div
+      class="lg:ml-5 lg:mr-5 m-3 mb-4 p-field h-full"
+      [ngClass]="{ 'move-down': isTvsDetailsRotated }"
+    >
+      <p-dropdown
+        [hidden]="screenDetails?.tv_status === 'off'"
+        #dropdownTvsList
+        [options]="currentScreensDiffusion"
+        placeholder=" Vidéos En cours"
+        [ngClass]="{
+          active: isTvsListRotated
+        }"
+        (click)="toggleRotation('tvs_list')"
+        [overlayOptions]="getOverlayOptions()"
+        [autoDisplayFirst]="true"
+        [(ngModel)]="optionLabel"
+        optionLabel="video_name"
+        class="tvs-list-dropdown screens-dropdown"
+        (onChange)="onScreenVideoSelection($event.value)"
+        [dropdownIcon]="
+          !(currentDiffusion$ | async)?.length
+            ? 'pi pi-spin pi-spinner'
+            : 'pi pi-chevron-down'
+        "
+      >
+        <ng-template let-item pTemplate="item">
+          <div class="custom-dropdown-item w-full h-2rem">
+            <span
+              class="font-color font-light md:text-base text-sm"
+              style="color: #1076fc"
+              >{{ item.video_name }}
+            </span>
+          </div>
+        </ng-template>
+      </p-dropdown>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,119 @@
+.playlist {
+  border-radius: 10px;
+  background: #eff0f8;
+  box-shadow: 0px 6px 16px 0px rgba(13, 23, 81, 0.12);
+  // height: 27rem;
+  height: auto;
+}
+.widget {
+  border-radius: 10px;
+  background: #1076fc;
+  // height: 27rem;
+  height: auto;
+}
+.budget-item {
+  padding: 60px 40px 65px 40px;
+}
+.new-color {
+  color: #16e0bd;
+}
+.budget-color {
+  color: #eff0f8;
+}
+.budgetBackground {
+  background: rgba(239, 240, 248, 0.24);
+  padding: 0.375rem 0.75rem;
+  display: inline-flex;
+  padding: 6px 12px;
+  align-items: center;
+//   margin-bottom: 2.375rem;
+}
+.newBackground {
+  background: rgba(22, 224, 189, 0.24);
+  padding: 0.375rem 0.75rem;
+  display: inline-flex;
+  padding: 6px 12px;
+  align-items: center;
+//   margin-bottom: 2.375rem;
+}
+.base-color {
+  color: #1076fc;
+}
+.text-color {
+  color: #0a113d;
+}
+// .approved-playlist {
+//   margin-bottom: 29px;
+// }
+
+:host ::ng-deep .schedule-btn-color .p-button-label {
+  color: #eff0f8;
+  font-family: Readex Pro;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+:host ::ng-deep .p-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  border-radius: 8px;
+  background: #1076fc;
+  box-shadow: 0px 4px 8px 0px rgba(13, 23, 81, 0.16);
+  padding: 14px 65px;
+}
+:host ::ng-deep .p-button:focus {
+  border: none;
+}
+
+:host ::ng-deep .schedule-btn-color .p-button-label {
+  color: #eff0f8;
+  font-family: Readex Pro;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+:host ::ng-deep .schedule-btn-color .p-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  border-radius: 8px;
+  background: #1076fc;
+  box-shadow: 0px 4px 8px 0px rgba(13, 23, 81, 0.16);
+  padding: 14px 65px;
+}
+:host ::ng-deep .widget-btn-color .p-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  border-radius: 8px;
+  background: #eff0f8;
+  box-shadow: 0px 4px 8px 0px rgba(13, 23, 81, 0.16);
+  padding: 14px 65px;
+}
+:host ::ng-deep .widget-btn-color .p-button-label {
+  color: #1076fc;
+  font-family: Readex Pro;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+:host ::ng-deep .p-button:focus {
+  border: none;
+}
+::ng-deep .btn-widget .pi {
+  color: #1076fc;
+}
+.scroll {
+  max-height: calc(100vh - 5rem);
+  overflow: auto;
+}

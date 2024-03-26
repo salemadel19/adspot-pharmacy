@@ -1,0 +1,12 @@
+<div class="flex h-screen">
+  <div class="flex app-header" *ngIf="isUserLogged$ | async">
+    <app-sidebar class="col-2 h-full w-full sidebar-container"></app-sidebar>
+  </div>
+  <div class="flex flex-column app-content">
+    <app-navbar
+      class="navbar-container"
+      *ngIf="isUserLogged$ | async"
+    ></app-navbar>
+    <div class="col p-0"><router-outlet></router-outlet></div>
+  </div>
+</div>

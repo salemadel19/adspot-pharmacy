@@ -1,0 +1,55 @@
+<div
+  class="flex align-items-center justify-content-between navbar h-full px-3 md:px-6"
+>
+  <div class="title flex-1">
+    <label class="nav-titles lg:text-2xl text-sm font-normal">{{
+      activeItem$ | async
+    }}</label>
+  </div>
+ 
+  <div class="flex align-items-center end-div">
+    <div class="flex align-items-center m-4">
+      <label
+        class="nav-titles md:text-base text-sm text-xs sm:text-sm font-normal"
+        >Tutorial
+      </label>
+      <p-toggleButton onLabel="Yes" offLabel="No" class="ml-2"></p-toggleButton>
+    </div>
+    <div
+      class="dropdown-container"
+      clickOutside
+      (clickOutside)="clickedOutside()"
+    >
+      <div class="dropdown mb-0" (click)="toggleDropdown()">
+        <div class="dropdown-header p-3">
+          <span
+            ><p-avatar
+              label="L"
+              styleClass="mr-2"
+              size="normal"
+              [style]="{ 'background-color': '#1076FC', color: '#ffffff' }"
+              shape="circle"
+            ></p-avatar>
+            <label class="nav-titles text-xs sm:text-sm font-normal mr-2"
+              >{{ client$ | async }}
+            </label>
+            <i class="pi pi-angle-down"></i>
+          </span>
+        </div>
+        <div class="dropdown-content pb-0" *ngIf="isDropdownVisible">
+          <ul class="pb-0 mb-0">
+            <li
+              (click)="navigateProfile()"
+              class="flex align-items-center profile"
+            >
+              <a>Profile</a>
+            </li>
+            <li (click)="logout()" class="flex align-items-center logout">
+              <a>Se déconnecter</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+.screens-detail-bg {
+  background-color: #eff0f8;
+}
+.screen-list {
+  width: 70%;
+  height: 100%;
+}
+.screen-details {
+  width: 30%;
+  height: 100%;
+}
+@media only screen and (max-width: 991px) {
+  .custom-height {
+    height: 50%;
+    width: 100%;
+  }
+  .screen-list {
+    width: 100%;
+  }
+  .screen-details {
+    width: 100%;
+  }
+}

@@ -1,0 +1,13 @@
+<div
+  class="flex flex-column align-items-center justify-content-center sidebar"
+  [ngClass]="{ 'close-sidebar': isCloseSidebar || isCloseContent }"
+>
+  <div class="logo-container my-5">
+    <img src="assets/img/logo.svg" alt="Logo" id="main-logo" />
+  </div>
+  <div class="menu-container md:p-2 p-0 md:w-auto">
+    <p-menu [model]="menu1" class="icon w-full"></p-menu>
+  </div>
+
+
+</div>

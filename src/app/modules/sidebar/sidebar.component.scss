@@ -1,0 +1,236 @@
+.logo-container {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: flex-start;
+  gap: 4px;
+  margin: auto 15%;
+}
+::ng-deep .p-menu {
+  background-color: transparent !important;
+  border: none !important;
+  width: 100% !important;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  cursor: pointer;
+}
+.menu-container {
+  margin: 0.6vh 0 0 0;
+}
+::ng-deep .p-menuitem-content {
+  width: 15vw;
+}
+::ng-deep .p-menuitem {
+  height: 8.5vh;
+  color: #0a113d;
+  width: 15vw;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+::ng-deep .p-menuitem-text {
+  color: #0a113d;
+  padding: 0 1rem;
+  font-size: clamp(20px, calc(1.2vw + 18px), 22px);
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 15vw;
+}
+::ng-deep .icon .pi {
+  color: #0a113d;
+  font-size: clamp(20px, calc(1.2vw + 18px), 22px);
+}
+::ng-deep .p-menuitem:hover {
+  border-radius: 8px;
+  background: #eff0f8;
+  box-shadow: 0px 4px 8px 0px rgba(13, 23, 81, 0.16);
+}
+::ng-deep .p-menuitem:hover .p-menuitem-text,
+::ng-deep .p-menuitem:hover .pi {
+  color: #1076fc;
+}
+::ng-deep .p-menuitem-content:hover {
+  background-color: transparent;
+}
+
+::ng-deep .p-menuitem:focus,
+::ng-deep .p-menuitem:focus-within {
+  border-radius: 8px;
+  background: #1076fc !important;
+}
+
+::ng-deep .p-menu .p-menuitem:focus .p-menuitem-text,
+::ng-deep .p-menu .p-menuitem:focus-within .p-menuitem-text,
+::ng-deep .p-menu .p-menuitem:focus .pi,
+::ng-deep .p-menu .p-menuitem:focus-within .pi {
+  color: #eff0f8;
+}
+::ng-deep .p-menu .p-menuitem.active {
+  border-radius: 8px;
+  background: #1076fc !important;
+}
+
+::ng-deep .p-menu .p-menuitem.inactive {
+  background-color: transparent;
+}
+::ng-deep .p-menu .p-menuitem.active .p-menuitem-text,
+::ng-deep .p-menu .p-menuitem.active .pi {
+  color: #eff0f8;
+}
+
+::ng-deep .p-menu .p-menuitem.p-focus > .p-menuitem-content {
+  background-color: transparent !important;
+}
+/* Default styles for the sidebar */
+#main-logo {
+  display: block;
+}
+::ng-deep .p-menuitem-text {
+  visibility: visible !important;
+}
+::ng-deep .p-menuitem {
+  display: flex;
+  align-items: center;
+}
+
+#main-logo {
+  display: block;
+}
+@media (max-width: 768px) {
+  #main-logo {
+    display: none !important;
+  }
+  ::ng-deep .p-menuitem-text {
+    visibility: hidden !important;
+  }
+  ::ng-deep .p-menuitem {
+    display: flex;
+    align-items: center;
+  }
+  .sidebar {
+    width: 4rem;
+    margin: 0 auto !important;
+  }
+  .logo-container {
+    margin: auto 0 !important;
+  }
+}
+@media screen and (max-width: 991px) {
+  #main-logo {
+    display: none;
+  }
+  ::ng-deep .p-menuitem-text {
+    visibility: hidden;
+  }
+  .logo-container::before {
+    content: '';
+    display: block;
+    width: 10vw;
+    height: 5vh;
+    background-image: url('/assets/img/logo-small-screens.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .logo-container {
+    margin: 0;
+  }
+  ::ng-deep .p-menuitem-link:hover .p-menuitem-text {
+    visibility: visible !important;
+    display: block;
+    position: absolute;
+    bottom: -21%;
+    left: 62%;
+    transform: translateX(-50%);
+    background-color: transparent;
+    padding: 8px;
+    border-radius: 4px;
+    z-index: 999;
+    color: #0a113d;
+    font-size: 12px;
+  }
+
+  ::ng-deep .p-menuitem-link:hover + .p-menuitem-text {
+    display: block;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffffff;
+    padding: 8px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+  }
+}
+
+.close-sidebar #main-logo {
+  display: none;
+}
+.close-sidebar ::ng-deep .p-menuitem-text {
+  visibility: hidden !important;
+}
+
+.close-sidebar ::ng-deep .p-menuitem-link {
+  width: 5rem;
+  margin: 0.5rem;
+}
+.close-sidebar ::ng-deep .p-menuitem {
+  display: flex;
+  //align-items: center;
+  justify-content: flex-start;
+  width: 5rem;
+}
+
+.close-sidebar #main-logo {
+  display: none;
+}
+.close-sidebar ::ng-deep .p-menuitem-text {
+  visibility: hidden;
+}
+.close-sidebar .logo-container::before {
+  content: '';
+  display: block;
+  width: 5rem;
+  height: 5vh;
+  background-image: url('/assets/img/logo-small-screens.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.close-sidebar .logo-container {
+  margin: 0 auto;
+}
+.close-sidebar ::ng-deep .p-menuitem-link:hover .p-menuitem-text {
+  visibility: visible !important;
+  display: block;
+  position: absolute;
+  bottom: -21%;
+  left: 2.1rem;
+  transform: translateX(-50%);
+  background-color: transparent;
+  padding: 8px;
+  border-radius: 4px;
+  z-index: 999;
+  color: #0a113d;
+  font-size: 12px;
+  text-align: center;
+}
+
+.close-sidebar ::ng-deep .p-menuitem-link:hover + .p-menuitem-text {
+  display: block;
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ffffff;
+  padding: 8px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+}

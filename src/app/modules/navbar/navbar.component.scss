@@ -1,0 +1,123 @@
+.nav-titles {
+  color: #0d1751;
+}
+
+::ng-deep .p-togglebutton {
+  width: 2.5vw;
+  height: 2vh;
+  border-radius: 15px;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+::ng-deep .p-togglebutton .p-button-on {
+  color: green;
+}
+
+::ng-deep .p-togglebutton:focus {
+  box-shadow: none;
+}
+.nav-user {
+  cursor: pointer;
+}
+.nav-user:hover {
+  box-shadow: 0px 4px 8px 0px rgba(13, 23, 81, 0.06);
+  border-radius: 8px;
+}
+
+::ng-deep .stepper .p-menuitem-link {
+  background-color: transparent;
+  width: 8vw;
+  max-width: 8vw;
+}
+::ng-deep .p-steps .p-steps-item.p-highlight .p-steps-title {
+  color: #1b2bb1;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+::ng-deep .p-steps .p-steps-item:not(.p-highlight) .p-steps-title {
+  color: rgba(24, 61, 10, 0.24);
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+::ng-deep .p-steps .p-steps-item.p-highlight .p-steps-number {
+  color: #eff0f8;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 400;
+  background-color: #1b2bb1;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+}
+::ng-deep .p-steps .p-steps-item:not(.p-highlight) .p-steps-number {
+  color: #eff0f8;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 400;
+  background: rgba(10, 17, 61, 0.24);
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  color: #0a113d;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.dropdown-content {
+  position: absolute;
+  right: 0;
+  top: 102%;
+  background-color: #eff0f8;
+  min-width: fit-content;
+  width: 100%;
+  z-index: 5;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.dropdown-content ul {
+  list-style-type: none;
+  padding-left: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.dropdown-content ul li {
+  color: #0a113d;
+  font-size: 18px;
+  font-weight: 400;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 3.5rem;
+  padding-right: 3.5rem;
+  white-space: nowrap;
+  height: 4.5rem;
+  cursor: pointer;
+}
+.dropdown-content ul li:hover {
+  box-shadow: 0px 4px 8px rgba(13, 23, 81, 0.16);
+  border-radius: 8px;
+}
+.dropdown-content ul .profile:hover {
+  color: #1076fc;
+}
+.dropdown-content ul .logout:hover {
+  color: #fb4b4e;
+}
+
+.dropdown-content,
+.dropdown-header:hover {
+  box-shadow: 0px 4px 8px rgba(13, 23, 81, 0.16);
+  border-radius: 8px;
+}

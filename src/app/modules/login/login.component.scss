@@ -1,0 +1,122 @@
+.container {
+  overflow: hidden;
+}
+.left-side {
+  width: fit-content;
+  height: 100vh;
+}
+.right-side {
+  height: 100vh;
+  overflow: auto;
+}
+
+.logo {
+  height: 35%;
+  width: 17.5rem;
+}
+.login-box {
+  margin-left: 7.5rem;
+  margin-right: 7.5rem;
+}
+.login-title {
+  color: #1076fc;
+  font-size: 24px;
+  font-weight: 500;
+}
+label {
+  color: #0a113d;
+  font-size: 18px;
+  font-weight: 300;
+}
+::ng-deep .login-input input {
+  height: 3.5rem;
+  color: rgba(10, 17, 61, 0.48) !important;
+  font-size: 18px;
+  font-weight: 300;
+
+  &:-webkit-autofill::first-line,
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    // border-color: #1076fc;
+    font-size: 18px;
+    font-weight: 300;
+  }
+}
+::ng-deep .login-input .p-inputtext {
+  transition: none;
+  border-color: rgba(10, 17, 61, 0.32);
+  background: #eff0f8;
+  border-radius: 8px;
+}
+::ng-deep .login-input .p-inputtext:enabled:focus {
+  box-shadow: none;
+  border: 1px rgba(10, 17, 61, 0.4) solid;
+}
+
+#password-help {
+  text-align: end;
+  font-size: 16px;
+  font-weight: 400;
+}
+#password-help {
+  color: #1076fc;
+  cursor: pointer;
+}
+::ng-deep .p-input-icon-right > .p-icon-wrapper {
+  transform: translateY(-50%);
+}
+::ng-deep .p-message-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+::ng-deep .p-button {
+  justify-content: center;
+}
+.login-btn {
+  margin-top: 3.75rem;
+}
+::ng-deep .login-btn .p-button {
+  height: 3.5rem;
+  box-shadow: none;
+}
+::ng-deep .login-btn .p-button:hover {
+  background: #eff0f8;
+  color: #0a113d;
+  box-shadow: 0px 4px 4px 0px rgba(13, 23, 81, 0.08);
+  border: none;
+}
+::ng-deep .login-btn .p-button:active {
+  background-color: rgba(10, 17, 61, 1);
+  color: #eff0f8;
+  border: none;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  padding-bottom: 2.1rem;
+  color: rgba(10, 17, 61, 0.48);
+  font-size: 16px;
+  font-weight: 300;
+}
+
+::ng-deep .login-toast .p-toast-message-content {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+.reset-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8rem;
+  height: 8rem;
+}
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  pointer-events: none;
+}

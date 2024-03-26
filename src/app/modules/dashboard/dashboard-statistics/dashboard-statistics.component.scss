@@ -1,0 +1,185 @@
+.stat-dropdown {
+  padding-top: 3.5rem;
+}
+:host ::ng-deep .dashboard-dropdown .p-dropdown {
+  width: 100%;
+  box-shadow: none;
+  border: 1px solid #1076fc;
+  border-radius: 8px;
+  height: 3.5rem;
+  background-color: transparent;
+  box-shadow: 0px 4px 4px 0px rgba(13, 23, 81, 0.08);
+  color: #1076fc;
+  font-size: clamp(18px, 1vw, 18px);
+  display: flex;
+  align-items: center;
+}
+:host ::ng-deep .dashboard-dropdown .p-dropdown-label {
+  color: #0a113d !important;
+  font-size: clamp(18px, 1vw, 18px);
+}
+:host ::ng-deep .dashboard-dropdown .p-dropdown .p-icon-wrapper {
+  color: #1b2bb1 !important;
+  opacity: 0.65;
+}
+:host
+  ::ng-deep
+  .dashboard-dropdown
+  .active
+  .p-dropdown:focus
+  .p-dropdown-trigger,
+:host
+  ::ng-deep
+  .dashboard-dropdown
+  .active
+  .p-dropdown:focus-within
+  .p-dropdown-trigger {
+  transform: rotate(-180deg) !important;
+  padding-left: 0.5vw;
+}
+:host ::ng-deep .dashboard-dropdown .p-dropdown-panel {
+  background: #eff0f8;
+  box-shadow: 0px 4px 8px 0px rgba(13, 23, 81, 0.16);
+  overflow-y: hidden;
+  height: clamp(100%, 100%, 100%);
+}
+:host ::ng-deep .dashboard-dropdown .p-dropdown-item {
+  padding-bottom: 0px;
+  color: #1b2bb1;
+  background-color: transparent !important;
+}
+:host ::ng-deep .dashboard-dropdown .p-dropdown-items-wrapper {
+  max-height: 17vh !important;
+  overflow-y: auto;
+}
+:host ::ng-deep .dashboard-dropdown .p-dropdown-item:hover {
+  background: #bfdbfe !important;
+}
+:host ::ng-deep .dashboard-dropdown .p-dropdown-item:focus {
+  background: #bfdbfe !important;
+}
+
+:host ::ng-deep .dashboard-dropdown .p-overlay {
+  width: 100%;
+}
+.items {
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(13, 23, 81, 0.08);
+  width: 85%;
+  margin: 0 auto;
+}
+.bg {
+  border-radius: 10px;
+  background: rgba(239, 240, 248, 0.64);
+  box-shadow: 0px 8px 12px 0px rgba(10, 17, 61, 0.06);
+}
+.screens-img {
+  margin: 0.75rem;
+}
+.panding {
+  color: #1076fc;
+}
+.pandingBackground {
+  background-color: rgb(18, 119, 253, 0.24);
+}
+.expired {
+  color: #f1ad23;
+}
+.expiredBackground {
+  background-color: rgb(242, 173, 36, 0.24);
+}
+.success {
+  color: #16e0bd;
+}
+.successBackground {
+  background: rgba(22, 224, 189, 0.24);
+}
+.rejected {
+  color: #fb4b4e;
+}
+
+.rejectedBackground {
+  background-color: rgba(251, 75, 78, 0.24);
+}
+.budget {
+  padding: 2.5rem 0;
+}
+.status-size {
+  max-height: 2.5rem;
+}
+.slot-height {
+  height: 50%;
+}
+.total-screens-bg {
+  background: rgba(16, 118, 252, 0.24);
+  width: fit-content;
+}
+.budget-bg {
+  background: rgba(22, 224, 189, 0.24);
+  width: fit-content;
+}
+.user-color {
+  color: #1076fc;
+}
+.content-card {
+  background: #eff0f8;
+}
+::ng-deep .pdf-button button {
+  background-color: transparent;
+  color: #1076fc;
+  display: flex;
+  gap: 1rem;
+  height: 3.5rem;
+  border: none;
+}
+::ng-deep .pdf-button button:focus {
+  box-shadow: none;
+}
+::ng-deep .pdf-button .pi {
+  font-size: 1.25rem;
+}
+::ng-deep .pdf-button .p-button-label {
+  font-weight: 400;
+}
+.scroll-line-chart {
+  max-height: calc(100vh - 17rem);
+  overflow: auto;
+}
+.font-color-total {
+  color: #1b2bb1;
+}
+.font-color {
+  color: #0a113d;
+}
+
+.disabled {
+  pointer-events: none;
+}
+::ng-deep .p-datepicker-year,
+::ng-deep .p-datepicker-month {
+  color: #1b2bb1;
+}
+
+::ng-deep .p-datepicker {
+  color: #0a113d;
+}
+[data-tooltip] {
+  position: relative;
+  cursor: pointer;
+}
+
+[data-tooltip]:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 8px;
+  background-color: rgba(239, 240, 248, 0.64);
+  color: #1076fc;
+  border: 1px solid;
+  font-size: 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+}

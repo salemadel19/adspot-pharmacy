@@ -1,0 +1,49 @@
+::ng-deep button {
+  background-color: transparent;
+  box-shadow: none;
+}
+::ng-deep .connect-screen .p-dialog-header {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding-top: 3.5rem;
+  padding-left: 4.5rem;
+  box-shadow: 0px 8px 24px 0px rgba(13, 23, 81, 0.04);
+  background: #eff0f8;
+  border-radius: 8px 8px 0 0;
+}
+::ng-deep .connect-screen .p-dialog-content {
+  box-shadow: 0px 8px 24px 0px rgba(13, 23, 81, 0.04);
+  background: #eff0f8;
+  border-radius: 0 0 8px 8px;
+}
+::ng-deep .connect-screen .p-dialog-title {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.font-color {
+  color: #0a113d;
+}
+.global-dialog {
+  border-radius: 10px;
+}
+.dialog-bg {
+  background: #eff0f8;
+  box-shadow: 0px 4px 8px 0px rgba(13, 23, 81, 0.16);
+}
+.dialog-item {
+  border: 1px solid rgba(10, 17, 61, 0.24);
+}
+::ng-deep .cancel-btn button {
+  background-color: #eff0f8;
+}
+::ng-deep .cancel-btn .p-button-label {
+  flex: none;
+  color: #1076fc;
+  font-size: clamp(12px, 1vw, 18px);
+  font-weight: 400;
+}
+::ng-deep .connect-screen .p-dialog-header-icons {
+  display: none;
+}

@@ -1,0 +1,11 @@
+<div class="md:flex lg:flex-row flex-column h-full">
+  <div
+    class="custom-height "
+    [ngClass]="{ 'notifications': !notifications.length , 'dashboard-statistics' : notifications.length}"
+  >
+    <app-dashboard-statistics></app-dashboard-statistics>
+  </div>
+  <div class="dashboard-details" *ngIf="notifications.length">
+    <app-dashboard-details></app-dashboard-details>
+  </div>
+</div>
